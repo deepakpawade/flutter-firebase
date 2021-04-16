@@ -7,7 +7,6 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-
   final AuthService _auth = AuthService();
 
   @override
@@ -25,11 +24,11 @@ class _SignInState extends State<SignIn> {
           child: Text('sign in anon'),
           onPressed: () async {
             dynamic result = await _auth.signInAnon();
-            if(result == null){
+            if (result == null) {
               print('error signing in');
             } else {
               print('signed in');
-              print(result.uid);
+              print(result);
             }
           },
         ),
