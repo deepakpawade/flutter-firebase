@@ -1,4 +1,5 @@
 import 'package:brew_crew/models/user_model.dart';
+import 'package:brew_crew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 // FirebaseUser has been changed to User
@@ -62,6 +63,10 @@ class AuthService {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       User user = result.user;
+
+      //create doc for user
+      await DatabaseService(uid: user.uid).updateUserData('0', 'new', 100);
+
       return _userFromFirebaseUser(user);
     } catch (error) {
       print(error.toString());
