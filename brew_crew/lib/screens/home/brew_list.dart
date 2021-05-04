@@ -1,5 +1,5 @@
+import 'package:brew_crew/models/brew.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 class BrewList extends StatefulWidget {
@@ -10,10 +10,14 @@ class BrewList extends StatefulWidget {
 class _BrewListState extends State<BrewList> {
   @override
   Widget build(BuildContext context) {
-    final brews = Provider.of<QuerySnapshot>(context);
+    final brews = Provider.of<List<Brew>>(context);
     brews != null
         ? {
-            for (var doc in brews.docs) {print(doc.data())}
+            brews.forEach((element) {
+              print(element.name);
+              print(element.sugars);
+              print(element.strength);
+            })
           }
         : print("retrieving data");
     return Container();

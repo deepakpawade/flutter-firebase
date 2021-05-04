@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/home/deep/flutter"
-export "FLUTTER_APPLICATION_PATH=/home/deep/Desktop/flutter/brew_crew"
+export "FLUTTER_APPLICATION_PATH=/home/deep/Desktop/flutter/flutter-firebase/brew_crew"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
