@@ -12,7 +12,7 @@ class DatabaseService {
   Future updateUserData(String sugars, String name, int strength) async {
     return await brewCollection
         .doc(uid)
-        .set({'sugar': sugars, 'name': name, 'strength': strength});
+        .set({'sugars': sugars, 'name': name, 'strength': strength});
   }
 
   //brewlist from snapshot

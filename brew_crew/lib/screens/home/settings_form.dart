@@ -22,11 +22,13 @@ class _SettingsFormState extends State<SettingsForm> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<UserModel>(context);
+    print(_currentSugars);
     return StreamBuilder<UserData>(
         stream: DatabaseService(uid: user.uid).userData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             UserData userData = snapshot.data;
+            print(userData.sugars);
             return Form(
               key: _formKey,
               child: Container(
@@ -47,7 +49,7 @@ class _SettingsFormState extends State<SettingsForm> {
                       ),
                       SizedBox(height: 10.0),
                       DropdownButtonFormField(
-                        value: _currentSugars ?? userData.sugars,
+                        value: userData.sugars,
                         decoration: textInputDecoration,
                         items: sugars.map((sugar) {
                           return DropdownMenuItem(
@@ -78,9 +80,17 @@ class _SettingsFormState extends State<SettingsForm> {
                             style: TextStyle(color: Colors.white),
                           ),
                           onPressed: () async {
-                            print(_currentName);
-                            print(_currentSugars);
-                            print(_currentStrength);
+                            if (_formKey.currentState.validate()) {
+                              await DatabaseService(uid: user.uid)
+                                  .updateUserData(
+                                      _currentSugars ?? userData.sugars,
+                                      _currentName ?? userData.name,
+                                      _currentStrength ?? userData.strength);
+                              Navigator.pop(context);
+                            }
+                            // print(_currentName);
+                            // print(_currentSugars);
+                            // print(_currentStrength);
                           }),
                     ],
                   ),
